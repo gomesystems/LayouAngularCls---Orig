@@ -1,0 +1,42 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+        > 
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let season of seasons"
+            [value]="season"
+          >
+            {{ season }} 
+          </mat-radio-button>
+        </mat-radio-group>
+       </mat-panel-title>
+    </mat-expansion-panel-header> 
+  </mat-expansion-panel>
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+        >
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let season2 of seasons2"
+            [value]="season2"
+          >
+            {{ season2 }}  
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion>

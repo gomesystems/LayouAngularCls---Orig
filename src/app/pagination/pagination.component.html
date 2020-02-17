@@ -1,0 +1,55 @@
+<div style="text-align:center">
+  <h4>
+    paginação
+  </h4>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Item</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of collection.data | paginate: config">
+        <th scope="row">{{ item.id }}</th>
+        <td>{{ item.value }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pagination-template
+    #p="paginationApi"
+    [id]="config.id"
+    (pageChange)="config.currentPage = $event"
+  >
+    <div class="pagination">
+      <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+        <span *ngIf="!p.isFirstPage()" class="active" (click)="p.previous()">
+          Anterior
+        </span>
+      </div>
+      <div
+        class="page-number"
+        *ngFor="let page of p.pages"
+        [class.current]="p.getCurrent() === page.value"
+      >
+        <span
+          (click)="p.setCurrent(page.value)"
+          *ngIf="p.getCurrent() !== page.value"
+        >
+         
+        <div class="num">{{ page.label }} </div>
+        
+        </span
+        >
+        <div *ngIf="p.getCurrent() === page.value">
+          <div class="num">{{ page.label }} </div>
+        </div>
+      </div>
+      <div class="pagination-next" [class.disabled]="p.isLastPage()">
+        <span *ngIf="!p.isLastPage()" (click)="p.next()"> Próximo </span>
+      </div>
+    </div>
+  </pagination-template>
+</div>
